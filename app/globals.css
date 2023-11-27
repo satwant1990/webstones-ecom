@@ -3,25 +3,202 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --primary-color: #2B2A4C;
+  --secondary-color: #B31312;
+  --body-text: #1F1717;
+  --white_color: #fff;
+  --border-color: #d5d5d5
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --primary-color: #2B2A4C;
+    --secondary-color: #B31312;
+    --body-text: #EEE2DE;
+    --white_color: #1F1717;
+    --border-color: #d5d5d5
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: var(--white_color);
+  color: var(--body-text);
+}
+
+.siteHeader {
+  background: var(--secondary-color);
+}
+
+.siteHeader .headerInner * {
+  color: var(--white_color);
+}
+
+.mainHeading {
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 700;
+}
+
+/*Loading css*/
+.loadingOverlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 999999;
+  background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+}
+
+.loadingInner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.proItemImage img {
+  display: inline-block;
+  width: auto !important;
+  height: 200px !important;
+}
+
+.proBoxOuter {
+  border: 1px solid var(--border-color);
+}
+
+.proBoxOuter h1 {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+.addToCarBtn {
+  position: relative;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+.addToCarBtn::before {
+  content: '';
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  top: 0px;
+  height: 100%;
+  background: var(--primary-color);
+  z-index: 20;
+  transition: all .2s linear;
+  -webkit-transition: all .2s linear;
+  -moz-transition: all .2s linear;
+}
+
+.addToCarBtn::after {
+  content: '';
+  position: absolute;
+  right: 0px;
+  width: 0%;
+  top: 0px;
+  height: 100%;
+  background: var(--secondary-color);
+  z-index: 20;
+  transition: all .2s linear;
+  -webkit-transition: all .2s linear;
+  -moz-transition: all .2s linear;
+}
+
+.addToCarBtn:hover::after {
+  width: 100%;
+}
+
+.addToCarBtn:hover::before {
+  width: 0%;
+}
+
+.addToCarBtn span {
+  color: var(--white_color);
+  text-transform: uppercase;
+  z-index: 100;
+  position: relative;
+}
+
+.price {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  color: var(--secondary-color);
+}
+
+.pageTitleBox h1 {
+  font-size: 40px;
+  line-height: 46px;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-transform: uppercase;
+}
+
+.pageTitleBox {
+  background: var(--border-color);
+}
+
+.cartTable {
+  border: 1px solid var(--border-color);
+  box-sizing: border-box;
+}
+
+.cartHeading {
+  background: var(--primary-color);
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.tableHeading {
+  color: var(--white_color);
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.cartItemRow .tableText {
+  padding: 10px 0px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.cartItemRow .tableText:last-child {
+  border-left: 1px solid var(--border-color);
+}
+
+.cartItemRow:not(:last-child) {
+  border-bottom: 1px solid var(--border-color);
 }
